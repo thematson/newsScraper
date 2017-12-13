@@ -1,4 +1,8 @@
 #main-card {
-    background-image: url("beer-bkgrd.jpg");
+    background: url("../images/beer-bkgrd.jpg") no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
     
 }

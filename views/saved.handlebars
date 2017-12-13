@@ -18,7 +18,7 @@
     
     <div class="row">
         <div class="col s12 m12">
-            <div class="card" id="main-card" style="height: 300px; background-image: url(../../public/images/beer-bkgrd.jpg)">
+            <div class="card" id="main-card" style="height: 300px;">
                 <div class="card-image">
                     {{!-- <img src="url(../../public/images/beer-bkgrd.jpg)"> --}}
                     <h1 class="card-title right-align" style="font-size: 75px; top: 0; color: black">Saved Articles</h1>
@@ -36,7 +36,7 @@
     <div class="col s12 m6">
         <div class="card blue-grey darken-1">
             <div class="card-content white-text">
-                <a class="card-title">{{title}}</a>
+                <a class="card-title" style="font-size:22px;">{{title}}</a>
                 <a class="waves-effect waves-light btn deletethis red" data-id= "{{_id}}" style="position: absolute; top: 20px; right: 180px; font-size: .75rem;" >Delete</a>
                  <a class="waves-effect waves-light btn notes blue" data-id= "{{_id}}" style="position: absolute; top: 20px; right: 20px; font-size: .75rem;" >Article Notes</a>
                 <p>{{summary}}</p>
@@ -49,7 +49,5 @@
     </div>
 </div>
 
-
-</br>
     {{/if}}
 {{/each}}

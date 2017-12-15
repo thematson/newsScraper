@@ -5,12 +5,12 @@
                 <li>
                     <a href="/">Home</a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="/saved">Saved Articles</a>
                 </li>
                 <li>
-                    <a class="waves-effect waves-light btn scraper" href="/scrape">Scrape
-                        <i class="material-icons right">youtube_searched_for</i> Articles</a>
+                    {{!-- <a class="waves-effect waves-light btn scraper" href="/scrape">Scrape
+                        <i class="material-icons right">youtube_searched_for</i> Articles</a> --}}
                 </li>
             </ul>
         </div>
@@ -37,8 +37,8 @@
         <div class="card blue-grey darken-1">
             <div class="card-content white-text">
                 <a class="card-title" style="font-size:22px;">{{title}}</a>
-                <a class="waves-effect waves-light btn deletethis red" data-id= "{{_id}}" style="position: absolute; top: 20px; right: 180px; font-size: .75rem;" >Delete</a>
-                 <a class="waves-effect waves-light btn notes blue" data-id= "{{_id}}" style="position: absolute; top: 20px; right: 20px; font-size: .75rem;" >Article Notes</a>
+                <a class="waves-effect waves-light btn red" id="deletethis" data-id= "{{_id}}" style="position: absolute; top: 20px; right: 180px; font-size: .75rem;" >Delete</a>
+                 <a class="waves-effect waves-light btn blue modal-trigger" href="#notesmodal" id="articlenotes" data-id= "{{_id}}" style="position: absolute; top: 20px; right: 20px; font-size: .75rem;" >Article Notes</a>
                 <p>{{summary}}</p>
             </div>
             <div class="card-action blue-grey darken-4">
@@ -48,6 +48,37 @@
         </div>
     </div>
 </div>
+
+
+  <!-- Modal Structure -->
+  <div id="notesmodal" class="modal modal-fixed-footer">
+    <div class="row">
+        <div class="modal-content">
+        <h6 id="titleinput">Notes for article {{_id}}</h6>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <ul class="collection" style="z-index:100; position: absolute;top: 55px;left: 25px; width: 80%" id="savednotes">
+        </ul>       
+    </div>
+    <br/>
+    <br/>
+    <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">mode_edit</i>
+          <textarea id="noteinput" class="materialize-textarea"></textarea>
+          <label for="noteinput">Take a note</label>
+        </div>
+      </div>
+    </form>
+  </div>
+    <div class="modal-footer">
+      <a href="#!" data-id= "{{_id}}" id="savenote" class="modal-action modal-close waves-effect waves-green btn-flat ">Save</a>
+    </div>
+  </div>
 
     {{/if}}
 {{/each}}

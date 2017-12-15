@@ -13,7 +13,7 @@ var cheerio = require("cheerio");
 // Require all models
 var db = require("./models");
 
-var PORT = 3000;
+var PORT = process.env.PORT || 3000;
 
 // Initialize Express
 var app = express();
@@ -33,8 +33,9 @@ app.use(express.static("public"));
 
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/newsScraperDb";
 mongoose.Promise = Promise;
-mongoose.connect("mongodb://localhost/newsScraperDb", {
+mongoose.connect(MONGODB_URI, {
   useMongoClient: true
 });
 
@@ -67,6 +68,20 @@ app.get("/saved", function (req, res) {
   });
 });
 
+//deleting an article
+app.delete("/deletearticle/:id", function(req, res) {
+  console.log("article is ", req.params.id);
+  // remove it from the db
+  db.Article.findOneAndRemove({"_id": req.params.id})
+  // db.article.remove({note: req.params.id})
+  .then(function(dbArticle) {
+    res.send("article has been deleted");
+    })
+    .catch(function(err) {
+      // If an error occurred, send it to the client
+      res.json(err);
+    });
+});
 
 // A GET route for scraping the berr street journal website
 app.get("/scrape", function(req, res) {
